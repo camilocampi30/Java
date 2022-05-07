@@ -1,0 +1,67 @@
+
+def encriptador(texto, rutaAcceso):
+    textoEncriptado = ' '
+
+    clave = int(input('Ingresa clave de encriptado: '))
+    for letra in texto:
+        ascii = ord(letra)
+        ascii += clave
+        textoEncriptado += chr(ascii)
+
+    archivoSobrescribir = open(rutaAcceso, 'w')
+    archivoSobrescribir.write(textoEncriptado)
+    archivoSobrescribir.close()
+
+    print("Archivo encriptado con exito!")
+    print(textoEncriptado)
+
+def desencriptador(texto, rutaAcceso):
+    textoEncriptado = ' '
+
+    clave = int(input('Ingresa clave de encriptado: '))
+    for letra in texto:
+        ascii = ord(letra)
+        ascii -= clave
+        textoEncriptado += chr(ascii)
+
+    archivoSobrescribir = open(rutaAcceso, 'w')
+    archivoSobrescribir.write(textoEncriptado)
+    archivoSobrescribir.close()
+
+    print("Archivo desencriptado con exito!")
+    print(textoEncriptado)
+
+respuestaMenu = 'A'
+
+while(respuestaMenu != 'C'):
+    print('____________________________')
+    print('Binvenido al Menu')
+    print('A [Encriptar]')
+    print('B [Desencriptar]')
+    print('C [Salir]')
+    respuestaMenu = input('Digita tu opcion:  ')
+
+    if(respuestaMenu == 'A' or respuestaMenu == 'a'):
+        print('Bienvenido al encriptador!')
+        rutaAcceso = input('por favor la direccion de archivo: ')
+        print('Leyendo archivo....')
+        archivo = open(rutaAcceso, 'r')
+        textoArchivo = archivo.read()
+        print('Completado!')
+        archivo.close()
+
+        encriptador(textoArchivo, rutaAcceso)
+
+    if(respuestaMenu == 'B' or respuestaMenu == 'b'):
+        print('Bienvenido al desencriptador!')
+        rutaAcceso = input('por favor la direccion de archivo: ')
+        print('Leyendo archivo....')
+        archivo = open(rutaAcceso, 'r')
+        textoArchivo = archivo.read()
+        print('Completado!')
+        archivo.close()
+
+        desencriptador(textoArchivo, rutaAcceso)
+
+    else:
+        print('Hasta luego!')
